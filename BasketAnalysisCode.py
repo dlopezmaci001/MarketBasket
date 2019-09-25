@@ -92,6 +92,7 @@ rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1)
 rules.head()
 
 """
+------------------------------------------------------------------------------------------------------------------------------------
 'antecedent support' computes the proportion of transactions that contain the antecedent A
 'consequent support' computes the support for the itemset of the consequent C. 
 'support' metric then computes the support of the combined itemset A ∪ C --
@@ -112,9 +113,6 @@ confidence score, the denominator becomes 0 (due to 1 - 1) for which the convict
 if items are independent, the conviction is 1.
 -------------------------------------------------------------------------------------------------------------------------------------
 """
-
-
-
 
 # Filter rules
 rules[ (rules['lift'] >= 6) &
