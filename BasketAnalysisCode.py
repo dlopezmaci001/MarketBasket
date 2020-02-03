@@ -33,7 +33,7 @@ data.shape
 
 from wordcloud import WordCloud
 
-prod_list = list(df['pa'])
+prod_list = list(df['department'])
 
 plt.rcParams['figure.figsize'] = (15, 15)
 wordcloud = WordCloud(background_color = 'white', width = 1200,  height = 1200, max_words = 121).generate(str(prod_list))
