@@ -15,7 +15,7 @@ import seaborn as sns
 
 # for defining path
 import os
-os.chdir('C:/Users/daniel.lopez/Documents/GitHub/MarketBasket')
+os.chdir(PATH)
 
 # for market basket analysis
 from mlxtend.frequent_patterns import apriori
@@ -23,8 +23,8 @@ from mlxtend.frequent_patterns import association_rules
 
 # reading the dataset
 
-data = pd.read_csv('Market_Basket_Optimisation.csv', header = None)
-df = pd.read_csv('C:/Users/daniel.lopez/Desktop/Ikea/Market Basket/Analisis final/ACR_Prod_Xselling_PA_2.csv',
+
+df = pd.read_csv(LINK_TO_CODE',
                  sep = '|',dtype=str)
 # let's check the shape of the dataset
 data.shape
@@ -46,19 +46,19 @@ plt.show()
 
 plt.rcParams['figure.figsize'] = (18, 7)
 color = plt.cm.copper(np.linspace(0, 1, 40))
-df['pa'].value_counts().head(40).plot.bar(color = color)
+df['department'].value_counts().head(40).plot.bar(color = color)
 plt.title('frequency of most popular items', fontsize = 20)
 plt.xticks(rotation = 90 )
 plt.grid()
 plt.show()
 
-df['PA'] = 'PA'
+df['DEPARTMENT'] = 'DEPARTMENT'
 df = df.truncate(before = -1, after = 15)
 
 
 import networkx as nx
 
-graph = nx.from_pandas_edgelist(df,source='pa',target='PA',edge_attr=True)
+graph = nx.from_pandas_edgelist(df,source='department',target='DEPARTMENT',edge_attr=True)
 
 plt.rcParams['figure.figsize'] = (20, 20)
 pos = nx.spring_layout(graph)
@@ -74,7 +74,7 @@ plt.show()
 
 # Creating the basket 
 
-basket = (df.groupby(['cardnumber','pa'])['pa'].count().unstack().reset_index().fillna(0).set_index('cardnumber','trxdt'))
+basket = (df.groupby(['ticket_id','department'])['department'].count().unstack().reset_index().fillna(0).set_index('ticket_id','date'))
 
 # Remove 0 and negative numbers
 
